@@ -39,6 +39,8 @@ export interface AppConfig {
   whatsapp_number: string;
   yape_number: string;
   yape_name: string;
+  plin_number?: string;
+  plin_name?: string;
   facebook_url?: string;
   instagram_url?: string;
   tiktok_url?: string;
@@ -46,7 +48,25 @@ export interface AppConfig {
   opening_hours?: string;
 }
 
-export interface CustomAssets {
-  logo?: string;
-  slides: string[];
+export interface OrderItem {
+  id?: string;
+  order_id?: string;
+  product_name: string;
+  variant_name?: string;
+  quantity: number;
+  price: number;
+}
+
+export interface Order {
+  id: string;
+  customer_name: string;
+  customer_phone?: string;
+  order_type: 'delivery' | 'pickup';
+  payment_method: 'yape' | 'plin' | 'efectivo';
+  payment_status: 'pending' | 'paid';
+  address?: string;
+  total_amount: number;
+  status: 'pending' | 'confirmed' | 'ready' | 'completed' | 'cancelled';
+  created_at: string;
+  items?: OrderItem[];
 }
